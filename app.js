@@ -1,0 +1,1 @@
+//Main code for LocatorApp node.js app
