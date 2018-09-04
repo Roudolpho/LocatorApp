@@ -9,7 +9,25 @@
         <p id='test'>
             init
         </p>
+        <div id='users'>
+        </div>
         <script>
+            var userElements = document.getElementById('users');
+            function arrangeUsers(userlist) {
+                userlist.forEach(user => {
+                    var userInfo = document.getElementById(user.username);
+                    if (userInfo == null) {
+                        userInfo = document.createElement("p");
+                        userInfo.id = user.username;
+                        userInfo.innerHTML = user.username + ' : ' + user.loc + ' : ' + user.phone;
+                        userElements.appendChild(userInfo);
+                    } else {
+                        userInfo.innerHTML = user.username + ' : ' + user.loc + ' : ' + user.phone;
+                    }
+                    console.log(userInfo);
+                });
+            }
+
             temp = document.getElementById('test');//creates a reference to the canvas
 
             var test = 0;
@@ -17,7 +35,8 @@
             function fetchData() {
                 $.get('/test',function (data) {
                     test = data;
-                    temp.innerHTML = '' + temp;
+                    //console.log(data);
+                    arrangeUsers(data.body);
                 });                
             }
             setInterval(fetchData, 1000);
