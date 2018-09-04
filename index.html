@@ -17,7 +17,7 @@
             function fetchData() {
                 $.get('/test',function (data) {
                     test = data;
-                    temp.innerHTML = temp;
+                    temp.innerHTML = '' + temp;
                 });                
             }
             setInterval(fetchData, 1000);

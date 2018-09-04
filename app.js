@@ -4,17 +4,12 @@ const express = require('express');
 //This next portion is used to send information to the html file for visualization
 var app = express();
 
-test = 0;
-
+var test = 1;
 app.use(express.static(__dirname + '/'));//communicates with the HTML page
-app.listen(7777, function() { console.log('Node.JS is listening!'); });
+app.get('/test', (req, res) => {res.send(test);});
 
-app.get('/test', function (req, res) {//sends test information
-	res.send(test);
-});
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
-function inc() {
-    test ++;
-}
-
-setInterval(inc, 5000);
+/*setInterval(function () {
+    test++;
+}, 5000);*/
