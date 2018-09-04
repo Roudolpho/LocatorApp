@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LocatorApp</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script data-main="scripts/main" src="scripts/require.js"></script>
+    </head>
+    <body>
+        <p id='test'>
+            init
+        </p>
+        <script>
+            temp = document.getElementById('test');//creates a reference to the canvas
+
+            var test = 0;
+            
+            function fetchData() {
+                $.get('/test',function (data) {
+                    test = data;
+                    temp.innerHTML = temp;
+                });                
+            }
+            setInterval(fetchData, 1000);
+        </script>
+    </body>
+</html>
