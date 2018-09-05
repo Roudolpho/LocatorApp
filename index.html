@@ -6,25 +6,47 @@
         <script data-main="scripts/main" src="scripts/require.js"></script>
     </head>
     <body>
-        <p id='test'>
-            init
-        </p>
-        <div id='users'>
+        
+        <div id='users' style='background-color:#41a0f4'>
         </div>
         <script>
             var userElements = document.getElementById('users');
             function arrangeUsers(userlist) {
                 userlist.forEach(user => {
-                    var userInfo = document.getElementById(user.username);
-                    if (userInfo == null) {
-                        userInfo = document.createElement("p");
-                        userInfo.id = user.username;
-                        userInfo.innerHTML = user.username + ' : ' + user.loc + ' : ' + user.phone;
-                        userElements.appendChild(userInfo);
+                    var userInfo1 = document.getElementById(user.username+'1');
+                    if (userInfo1 == null) {
+                        wrapper = document.createElement("div");//A divider to wrap the users infor
+                        wrapper.id = user.username;
+                        userElements.appendChild(wrapper);
+                        wrapper = document.getElementById(user.username);//redeifining the wrapper after it has been initiated
+                        wrapper.style = "display:flex;flex-direction:row;background-color:#41a0f4";
+
+                        userInfo1 = document.createElement("div");
+                        userInfo1.id = user.username+'1';
+                        userInfo1.innerHTML = '\t'+user.username;
+                        userInfo1.style = "flex-grow:1;padding:1% 5% 1%;background-color:#42b0f4;border-style:outset;border-color:#41a0f4";
+                        wrapper.appendChild(userInfo1);
+
+                        userInfo2 = document.createElement("div");
+                        userInfo2.id = user.username+'2';
+                        userInfo2.innerHTML = '\t'+user.loc;
+                        userInfo2.style = "flex-grow:1;text-align:center;padding:1% 5% 1%;border-style:outset;border-color:#41a0f4";
+                        wrapper.appendChild(userInfo2);
+
+                        userInfo3 = document.createElement("div");
+                        userInfo3.id = user.username+'3';
+                        userInfo3.innerHTML = '\t'+user.phone;
+                        userInfo3.style = "flex-grow:1;padding:1% 5% 1%;border-style:outset;border-color:#41a0f4";
+                        wrapper.appendChild(userInfo3);
+                        
                     } else {
-                        userInfo.innerHTML = user.username + ' : ' + user.loc + ' : ' + user.phone;
+                        userInfo1.innerHTML = user.username;//Update username
+                        userInfo2 = document.getElementById(user.username+'2');
+                        userInfo2.innerHTML = user.loc;//update location
+                        userInfo3 = document.getElementById(user.username+'3');
+                        userInfo3.innerHTML = user.phone;//update phone number
                     }
-                    console.log(userInfo);
+                    //console.log(userInfo);
                 });
             }
 
